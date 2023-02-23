@@ -1,10 +1,22 @@
-import wget
-url = 'https://www.gutenberg.org/ebooks/'
+import os
+import subprocess
 
-with open('id_books.txt') as file:
-    for line in file:
-        id = str(line)
-        wget.download(url,out = path)
+# Especifica la ruta al archivo de texto que contiene los enlaces
+links ='https://www.gutenberg.org/ebooks/'
+file_path = 'id_books.txt'
+
+# Especifica el directorio de destino donde se guardarán los archivos descargados
+destination_dir = 'Users/prestamour/Documents/BIGData-main/bigdata_2023-1/Parcial'
+
+# Abre el archivo de texto que contiene los enlaces
+with open(file_path, 'r') as file:
     
-
-ith open(os.path.join('/Users/Desktop/FolderHere', fileName + '.mp3'), 'wb') as f:
+   
+    # Lee cada línea del archivo y descarga el archivo correspondiente
+    for line in file:
+        # Elimina cualquier espacio en blanco al final de la línea
+        link = links + str(line)
+        print(link)
+        filename = os.path.basename(line)
+        subprocess.run(['wget', link, '-O', filename])
+   
