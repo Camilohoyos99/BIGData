@@ -3,20 +3,31 @@ import subprocess
 
 # Especifica la ruta al archivo de texto que contiene los enlaces
 links ='https://www.gutenberg.org/ebooks/'
-file_path = 'id_books.txt'
+file_path = 'links_books_data_set.txt'
 
 # Especifica el directorio de destino donde se guardarán los archivos descargados
-destination_dir = 'Users/prestamour/Documents/BIGData-main/bigdata_2023-1/Parcial'
+destination_dir = '/home/estudiantes/BIGData/bigdata_2023-1/Parcial'
+
+
+file_path_id= 'id_books.txt'
+with open(file_path_id, 'r') as IDS:
+    ids=[]
+    for line in IDS:
+        line=line[:-2]
+        ids.append(line)
 
 # Abre el archivo de texto que contiene los enlaces
+print (ids)
+
+
 with open(file_path, 'r') as file:
-    
-   
-    # Lee cada línea del archivo y descarga el archivo correspondiente
-    for line in file:
-        # Elimina cualquier espacio en blanco al final de la línea
-        link = links + str(line)
-        print(link)
-        filename = os.path.basename(line)
-        subprocess.run(['wget', link, '-O', filename])
+
+    cont=0
+    # Lee cada línea del archivo y descarga el archivo correspondiente 
+    for link in file:
+        
+        print("link",link)
+        #filename = os.path.basename(line)
+        wdet.download(link,destination_dir)
+        cont+=1
    
