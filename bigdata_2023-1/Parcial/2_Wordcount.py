@@ -10,13 +10,14 @@ class BookAnalyzer(MRJob):
     def mapper(self, _, line):
         # Get the title and text fields from the input line
         title_start = line.find("Project Gutenberg eBook of ") + len("Project Gutenberg eBook of ")
+        
         title_end = line.find(",", title_start)
         title = line[title_start:title_end]
         author_start = line.find("by ", title_end) + len("by ")
         author_end = line.find("\n", author_start)
         author = line[author_start:author_end]
         text = line[line.find("*** START OF THIS PROJECT GUTENBERG EBOOK", author_end):]
-
+        
         # Remove punctuation and convert to lowercase
         text = text.translate(str.maketrans("", "", string.punctuation))
         text = text.lower()
@@ -36,7 +37,7 @@ class BookAnalyzer(MRJob):
         total = sum(counts)
 
         # If the word appears in all 15 books, emit it with its count
-        if total == 15:
+        if total == 2:
             yield None, (total, word)
 
     def reducer_sort_counts(self, _, word_counts):
@@ -44,7 +45,7 @@ class BookAnalyzer(MRJob):
         sorted_word_counts = sorted(word_counts, reverse=True)
 
         # Emit the top 20 words
-        for i in range(2):
+        for i in range(20):
             yield sorted_word_counts[i][1], sorted_word_counts[i][0]
 
     def steps(self):
@@ -56,3 +57,6 @@ class BookAnalyzer(MRJob):
 
 if __name__ == '__main__':
     BookAnalyzer.run()
+
+#para correlo con los libros
+#python 2_Wordcount.py input/11 input/174 input/1228 input/1497 input/1524 input/1661 input/1727 input/2000 input/2147 input/2148 input/2680 input/3176 input/3207 input/42671 input/70108 >3_out.txt
