@@ -34,3 +34,6 @@ class WordCount(MRJob):
 
 if __name__== "__main__":
 	WordCount.run()
+
+
+#python 2_Wordcount.py input/11 input/1497 input/1661 input/174 input/2147 input/2680 input/3207 input/70108 input/1228 input/1524 input/1727 input/2000 input/2148 input/3176 input/42671 >out.txt

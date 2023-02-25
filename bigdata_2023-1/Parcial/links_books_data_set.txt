@@ -12,3 +12,4 @@ https://www.gutenberg.org/cache/epub/42671/pg42671.txt
 https://www.gutenberg.org/files/1661/1661-0.txt
 https://www.gutenberg.org/cache/epub/174/pg174.txt
 https://www.gutenberg.org/cache/epub/70108/pg70108.txt
+https://www.gutenberg.org/cache/epub/70124/pg70124.txt
